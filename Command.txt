@@ -1,0 +1,25 @@
+python -m django --version  --> Show the Django version
+
+django-admin startproject <project-name> --> Create a Django project
+
+python manage.py runserver  --> Run the server
+
+	- python manage.py runserver 8080 --> Run the server on Port 8080 (optional)
+
+	- python manage.py runserver 0.0.0.0:8000 --> Run the server on IP 0.0.0.0 and Port 8000 (optional)
+
+python manage.py startapp <app_name> --> Create an app (a project can have multiple apps)
+
+python manage.py makemigrations <app_name> --> Make a migration in the database for this app
+
+	- python manage.py makemigrations --> Make a migration in the database for all created apps
+
+python manage.py sqlmigrate <app_name> <migration_name> --> Show the SQL Commad for the migration
+	- example:  
+		Migrations for 'polls':
+  		polls/migrations/0001_initial.py
+		=> python manage.py sqlmigrate polls 0001
+
+python manage.py migrate --> Create model tables in database
+
+pip install <name> --> install an extension for the app

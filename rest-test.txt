@@ -1,0 +1,193 @@
+POST http://127.0.0.1:8000/signup
+Content-Type: application/json
+
+{ "username": "adam16", "password": "Pass1234!", "email": "adam16@mail.com" }
+
+###
+
+POST http://127.0.0.1:8000/login
+Content-Type: application/json
+
+{ "username": "adam", "password": "Pass1234!" }
+
+###
+
+GET http://127.0.0.1:8000/test_token 
+Content-Type: application/json 
+Authorization: token 7f7c91f5b689b20045fd0b2282d3e328559a3757n
+
+###
+GET http://127.0.0.1:8000/subject
+Content-Type: application/json
+Authorization: Api-Key GTyGAAKn.MJW71ZX6jed23UzjHcrK3zBxWwscb5IX
+
+###
+GET http://127.0.0.1:8000/user
+Content-Type: application/json
+Authorization: Api-Key 83iPqeKZ.Zkc1R4bspkrUI2J4ZVV8RBLPOgfOCu1S
+
+###
+POST http://127.0.0.1:8000/user
+Content-Type: application/json
+Authorization: Api-Key 83iPqeKZ.Zkc1R4bspkrUI2J4ZVV8RBLPOgfOCu1S
+
+{ "email": "adam76@gmail.com", 
+"password": "Pass1234!", 
+"role": "Subscriber",
+"token": "qojdwiaadiodknwiopnnsday",
+"datetime": "2023-09-01 22:32:12"}
+
+###
+POST http://127.0.0.1:8000/MyView
+Content-Type: application/json
+Authorization: Api-Key 83iPqeKZ.Zkc1R4bspkrUI2J4ZVV8RBLPOgfOCu1S
+
+{ "email": "adam1@gmail.com", 
+"password": "Pass1234!", 
+"role": "Subscriber",
+"token": "qojdwiaadiodknwiopnnsday",
+"date": "01.10.2023"}
+
+
+
+###
+GET https://redora.uber.space/django-rest-api/signup/
+Authorization: Api-Key T6ZNHpo3.cVaah0Sb0vrKNqhwkyPWfd0r4o2hgKgz
+
+
+###
+POST https://redora.uber.space/django-rest-api/loginTest/
+Content-Type: application/json
+Authorization: Api-Key T6ZNHpo3.cVaah0Sb0vrKNqhwkyPWfd0r4o2hgKgz
+
+{  
+
+    "username": "melah1@gmail.com",
+    "password": "fgretsdssdse"
+}
+###
+POST https://redora.uber.space/django-rest-api/login/
+Content-Type: application/json
+Authorization: Api-Key T6ZNHpo3.cVaah0Sb0vrKNqhwkyPWfd0r4o2hgKgz
+
+{  
+    "email": "melah1@gmail.com", 
+    "password": "Pass1234!"
+}
+###
+POST https://redora.uber.space/django-rest-api/api/login/
+Content-Type: application/json
+Authorization: Api-Key T6ZNHpo3.cVaah0Sb0vrKNqhwkyPWfd0r4o2hgKgz
+
+{  
+    "username_or_email": "Armelo12", 
+    "password": "tzrdjkizur4545"
+}
+###
+POST https://redora.uber.space/django-rest-api/logoutTest/
+Content-Type: application/json
+Authorization: token 9e2a9197e83ed427feb068bb8ea382273bdda227
+
+###
+POST https://redora.uber.space/django-rest-api/api/logout/
+Content-Type: application/json
+Api-Key: T6ZNHpo3.cVaah0Sb0vrKNqhwkyPWfd0r4o2hgKgz
+Authorization: Token 9e2a9197e83ed427feb068bb8ea382273bdda227
+
+###
+POST https://redora.uber.space/django-rest-api/logout/
+Content-Type: application/json
+Authorization: Api-Key mOjqyG8U.BXGIbauLJoTvt0UW6OVbExAojS4UdVua
+
+{  
+    "id": 2
+}
+
+###
+POST https://redora.uber.space/django-rest-api/signup/
+Content-Type: application/json
+Authorization: Api-Key mOjqyG8U.BXGIbauLJoTvt0UW6OVbExAojS4UdVua
+
+{  
+    "username": "Armelo13", 
+    "firstname": "Arm", 
+    "lastname": "Tsa", 
+    "email": "mel65@gmail.com", 
+    "password": "Pass1234!",
+    "newsletter": true,
+    "role": "Rednerin",
+    "datetime": "16.01.2024"
+}
+###
+GET https://redora.uber.space/django-rest-api/rednerin-list-all/
+Content-Type: application/json
+Authorization: Api-Key mOjqyG8U.BXGIbauLJoTvt0UW6OVbExAojS4UdVua
+
+###
+POST https://redora.uber.space/django-rest-api/login/
+Content-Type: application/json
+Authorization: Api-Key mOjqyG8U.BXGIbauLJoTvt0UW6OVbExAojS4UdVua
+
+{  
+    "email": "mel6@gmail.com", 
+    "password": "Pass1234!"
+}
+###
+POST https://redora.uber.space/django-rest-api/logout/
+Content-Type: application/json
+Authorization: Api-Key mOjqyG8U.BXGIbauLJoTvt0UW6OVbExAojS4UdVua
+
+{ 
+    "id": 2,
+    "email": "mel19@gmail.com"
+}
+###
+GET https://redora.uber.space/django-rest-api/profile/2
+Content-Type: application/json
+Authorization: Api-Key mOjqyG8U.BXGIbauLJoTvt0UW6OVbExAojS4UdVua
+
+###
+GET https://redora.uber.space/django-rest-api/ProfileView/1/
+Content-Type: application/json
+Authorization: Api-Key mOjqyG8U.BXGIbauLJoTvt0UW6OVbExAojS4UdVua
+
+###
+GET https://redora.uber.space/django-rest-api/api/profile_logged/5
+Content-Type: application/json
+Authorization: Token 99609cecf4b961c5c5b93c45b59db432c9a74b98
+
+###
+GET https://redora.uber.space/django-rest-api/api/PrivateProfileView/
+Content-Type: application/json
+Authorization: Token fae6ce594e8654900612cccd0537ea12e58075ad
+
+###
+GET https://redora.uber.space/django-rest-api/test_token 
+Content-Type: application/json 
+Authorization: token 83f8c6e8f4430e711eae00933c11b7361ba643d6
+
+###
+GET https://redora.uber.space/django-rest-api/authenticated_Profil 
+Content-Type: application/json 
+Authorization: Token e10b9c05ea726afd5d11c590b55918248044c70c
+
+###
+PUT https://redora.uber.space/django-rest-api/profile/2/
+Content-Type: application/json
+Authorization: Api-Key mOjqyG8U.BXGIbauLJoTvt0UW6OVbExAojS4UdVua
+
+{ 
+    "firstname": "Armel T",
+    "phone": 18063815
+
+}
+
+
+###
+POST https://redora.uber.space/django-rest-api/del_user/
+Content-Type: application/json
+Authorization: Api-Key mOjqyG8U.BXGIbauLJoTvt0UW6OVbExAojS4UdVua
+
+{ 
+    "email": "mezuzf@yahoo.fr"
+}

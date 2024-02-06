@@ -2,40 +2,53 @@ from .models import *
 from rest_framework import serializers, fields
 
 
-class AlbumSerializer(serializers.ModelSerializer):
+class BookSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Album
-        fields = ('id', 'artist', 'name', 'release_date', 'num_stars')
+        model = Book
+        fields = '__all__'
 
 
-class MusicianSerializer(serializers.ModelSerializer):
-    album_musician = AlbumSerializer(many=True)
-
+class AuthorSerializer(serializers.ModelSerializer):
+    books = BookSerializer(many=True)
     class Meta:
-        model = Musician
-        fields = ('id', 'first_name', 'last_name', 'instrument', 'album_musician')
+        model = Author
+        fields = '__all__'
+        
+    def update_test(self, instance, validated_data):
+        children_data = validated_data.pop('books', [])
+        instance = super().update(instance, validated_data)
 
-    def create(self, validated_data):
-        albums_data = validated_data.pop('album_musician')
-        musician = Musician.objects.create(**validated_data)
-        for album_data in albums_data:
-            Album.objects.create(artist=musician, **album_data)
-        return musician
+        for child_data in children_data:
+            child_instance, created = Book.objects.update_or_create(
+                author=instance,
+                # title=child_data['title'],  # Replace with actual field names
+                # defaults={'title': child_data['title']},
+                defaults={'title': child_data['title'], 'published_date': child_data['published_date']}
+            )
+
+        return instance
 
     def update(self, instance, validated_data):
-        albums_data = validated_data.pop('album_musician')
-        albums = (instance.album_musician).all()
-        albums = list(albums)
-        instance.first_name = validated_data.get('first_name', instance.first_name)
-        instance.last_name = validated_data.get('last_name', instance.last_name)
-        instance.instrument = validated_data.get('instrument', instance.instrument)
+        books = validated_data.pop('books')
+        instance.title = validated_data.get("title", instance.title)
         instance.save()
+        keep_choices = []
+        for book in books:
+            if "id" in book.keys():
+                if Book.objects.filter(id=book["id"]).exists():
+                    c = Book.objects.get(id=book["id"])
+                    c.text = book.get('text', c.text)
+                    c.save()
+                    keep_choices.append(c.id)
+                else:
+                    continue
+            else:
+                c = Book.objects.create(**book, question=instance)
+                keep_choices.append(c.id)
 
-        for album_data in albums_data:
-            album = albums.pop(0)
-            album.name = album_data.get('name', album.name)
-            album.release_date = album_data.get('release_date', album.release_date)
-            album.num_stars = album_data.get('num_stars', album.num_stars)
-            album.save()
-        return instance      
+        for book in instance.books:
+            if book.id not in keep_choices:
+                book.delete()
+
+        return instance

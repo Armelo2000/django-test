@@ -1,21 +1,18 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
+# models.py
+
 from django.db import models
 
-# Create your models here.
-
-
-class Musician(models.Model):
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    instrument = models.CharField(max_length=100)
-
-    def __unicode__(self):
-        return self.first_name
-
-
-class Album(models.Model):
-    artist = models.ForeignKey(Musician, on_delete=models.CASCADE, related_name='album_musician', null=True, blank=True)
+class Author(models.Model):
     name = models.CharField(max_length=100)
-    release_date = models.DateField()
-    num_stars = models.IntegerField()
+    
+    def __str__(self):
+        return self.name
+    
+
+class Book(models.Model):
+    title = models.CharField(max_length=200)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE, related_name='books')
+    published_date = models.DateField()
+
+    def __str__(self):
+        return self.title

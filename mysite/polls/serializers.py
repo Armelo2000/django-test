@@ -7,7 +7,7 @@ class BookSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
         fields = ['id', 'author', 'title', 'published_date']
-        read_only_fields = ('author',)
+        # read_only_fields = ('author',)
 
 
 class AuthorSerializer(serializers.ModelSerializer):
@@ -17,28 +17,13 @@ class AuthorSerializer(serializers.ModelSerializer):
         model = Author
         fields = ['id', 'name', 'books']
         
-    def update_test(self, instance, validated_data):
-        children_data = validated_data.pop('books', [])
+    def update(self, instance, validated_data):
+        related_data = validated_data.pop('books', [])
         instance = super().update(instance, validated_data)
 
-        for child_data in children_data:
-            child_instance, created = Book.objects.update_or_create(
-                author=instance,
-                # title=child_data['title'],  # Replace with actual field names
-                # defaults={'title': child_data['title']},
-                defaults={'title': child_data['title'], 'published_date': child_data['published_date']}
-            )
-
+        self.update_related_object(instance, related_data)
+   
         return instance
-
-    def update(self, instance, validated_data):
-        books = validated_data.pop('books')
-        instance.name = validated_data.get("name", instance.name)
-        instance.save()
-
-        self.update_related_object(instance, books)
-        return instance
-    
     
     def update_related_object(self, instance, books):
     
@@ -63,8 +48,3 @@ class AuthorSerializer(serializers.ModelSerializer):
                 if book_id not in keep_choices:
                     Book.objects.get(id=book_id).delete()
 
-    # def get_name(self, obj):
-        # return "Dynamic"
-        
-        
-        

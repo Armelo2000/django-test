@@ -44,7 +44,7 @@ class AuthorUpdateView(generics.RetrieveUpdateAPIView):
     serializer_class = AuthorSerializer
     lookup_field = 'pk'
 
-    def update(self, request, *args, **kwargs):
+    def update2(self, request, *args, **kwargs):
         instance = self.get_object()
         serializer = self.get_serializer(instance, data=request.data, partial=True)
         serializer.is_valid(raise_exception=True)
